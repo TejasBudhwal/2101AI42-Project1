@@ -4,6 +4,7 @@ using namespace std;
 // Declaring the functions to be used in the code :
 void InsertionSort(int array[], int n);
 void SelectionSort(int array[], int n);
+void BubbleSort(int array[], int n);
 void PrintArray(int array[], int n);
 void swap(int *x, int *y);
 
@@ -20,6 +21,7 @@ int main(){
     cout<<"Enter the number corresponding to the type of sort you would like to execute : \n";
     cout<<"1. Insertion Sort\n";
     cout<<"2. Selection Sort\n";
+    cout<<"3. Bubble Sort\n";
     int choice;
     cout<<"Your choice of sort : ";
     cin>>choice;
@@ -31,6 +33,10 @@ int main(){
         break;
     case 2:
         SelectionSort(array, n);
+        PrintArray(array, n);
+        break;
+    case 3:
+        BubbleSort(array, n);
         PrintArray(array, n);
         break;
     default:
@@ -95,4 +101,19 @@ void swap(int *x, int *y)
     int temp = *x;
     *x = *y;
     *y = temp;
+}
+
+// Function to perform Bubble sort on the inputted array
+void BubbleSort(int array[], int n)
+{
+    for(int i=0; i<n-1; i++)
+    {
+        for(int j=0; j<n-i-1; j++)
+        {
+            if(array[j] > array[j + 1])
+            {
+                swap(array[j], array[j + 1]);
+            }
+        }
+    }
 }
