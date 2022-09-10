@@ -2,6 +2,7 @@
 using namespace std;
 
 float add(float a, float b);
+float sub(float a, float b);
 
 int main(){
     int choice;
@@ -17,6 +18,9 @@ int main(){
         case 1 :
             add(x, y);
             break;
+        case 2 :
+            sub(x, y);
+            break;
         default :
             cout<<"The number you entered for choosing the operation is not a valid input.\n";
             break;
@@ -28,4 +32,10 @@ float add(float a, float b)
 {
     float output=a+b;
     cout<<"The sum of the two numbers you entered is : "<<output;
+}
+
+float sub(float a, float b)
+{
+    float output=a-b;
+    cout<<"The difference of the two numbers you entered is : "<<output;
 }
