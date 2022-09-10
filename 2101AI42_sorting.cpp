@@ -6,9 +6,11 @@ void InsertionSort(int array[], int n);
 void SelectionSort(int array[], int n);
 void BubbleSort(int array[], int n);
 void MergeSort(int array[], int const begin, int const end);
+void QuickSort(int array[], int low, int high);
 void PrintArray(int array[], int n);
 void swap(int *x, int *y);
 void Merge(int array[], int const left, int const mid, int const right);
+int Partition (int array[], int low, int high);
 
 int main(){
     int n;
@@ -25,6 +27,7 @@ int main(){
     cout<<"2. Selection Sort\n";
     cout<<"3. Bubble Sort\n";
     cout<<"4. Merge Sort\n";
+    cout<<"5. Quick Sort\n";
     int choice;
     cout<<"Your choice of sort : ";
     cin>>choice;
@@ -44,6 +47,10 @@ int main(){
         break;
     case 4:
         MergeSort(array, 0, n-1);
+        PrintArray(array, n);
+        break;
+    case 5:
+        QuickSort(array, 0, n-1);
         PrintArray(array, n);
         break;
     default:
@@ -189,4 +196,37 @@ void MergeSort(int array[], int const begin, int const end)
     MergeSort(array, begin, mid);
     MergeSort(array, mid + 1, end);
     Merge(array, begin, mid, end);
+}
+
+// Function for creating a partition of the array
+/* The function takes the last element of the array
+as th pivot and places it at its correct position
+in the sorted array. Then it places all the elements
+smaller than the pivot to the left of it and all the
+elements greater then the pivot to the right of it. */
+int Partition (int array[], int low, int high)
+{
+    int pivot = array[high];
+    int i = (low - 1);
+    for (int j=low; j<=high-1; j++)
+    {
+        if (array[j] < pivot)
+        {
+            i++;
+            swap(&array[i], &array[j]);
+        }
+    }
+    swap(&array[i+1], &array[high]);
+    return (i+1);
+}
+
+// Function to perform Quick sort on the inputted array
+void QuickSort(int array[], int low, int high)
+{
+    if(low < high)
+    {
+        int pi = Partition(array, low, high);
+        QuickSort(array, low, pi - 1);
+        QuickSort(array, pi + 1, high);
+    }
 }
