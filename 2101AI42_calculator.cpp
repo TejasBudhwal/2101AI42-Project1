@@ -5,6 +5,7 @@ float add(float a, float b);
 float sub(float a, float b);
 float multi(float a, float b);
 float div(float a, float b);
+float avg(float a, float b);
 
 int main(){
     int choice;
@@ -28,6 +29,9 @@ int main(){
             break;
         case 4 :
             div(x, y);
+            break;
+        case 5 :
+            avg(x, y);
             break;
         default :
             cout<<"The number you entered for choosing the operation is not a valid input.\n";
@@ -58,4 +62,10 @@ float div(float a, float b)
 {
     float output=a/b;
     cout<<"Division of the two numbers you entered gives : "<<output;
+}
+
+float avg(float a, float b)
+{
+    float output=(a+b)/2;
+    cout<<"The average of the two numbers you entered is : "<<output;
 }
