@@ -4,6 +4,7 @@ using namespace std;
 float add(float a, float b);
 float sub(float a, float b);
 float multi(float a, float b);
+float div(float a, float b);
 
 int main(){
     int choice;
@@ -24,6 +25,9 @@ int main(){
             break;
         case 3 :
             multi(x, y);
+            break;
+        case 4 :
+            div(x, y);
             break;
         default :
             cout<<"The number you entered for choosing the operation is not a valid input.\n";
@@ -48,4 +52,10 @@ float multi(float a, float b)
 {
     float output=a*b;
     cout<<"Multiplication of the two numbers you entered gives : "<<output;
+}
+
+float div(float a, float b)
+{
+    float output=a/b;
+    cout<<"Division of the two numbers you entered gives : "<<output;
 }
