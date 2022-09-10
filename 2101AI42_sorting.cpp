@@ -3,7 +3,9 @@ using namespace std;
 
 // Declaring the functions to be used in the code :
 void InsertionSort(int array[], int n);
+void SelectionSort(int array[], int n);
 void PrintArray(int array[], int n);
+void swap(int *x, int *y);
 
 int main(){
     int n;
@@ -17,6 +19,7 @@ int main(){
     }
     cout<<"Enter the number corresponding to the type of sort you would like to execute : \n";
     cout<<"1. Insertion Sort\n";
+    cout<<"2. Selection Sort\n";
     int choice;
     cout<<"Your choice of sort : ";
     cin>>choice;
@@ -24,6 +27,10 @@ int main(){
     {
     case 1:
         InsertionSort(array, n);
+        PrintArray(array, n);
+        break;
+    case 2:
+        SelectionSort(array, n);
         PrintArray(array, n);
         break;
     default:
@@ -61,4 +68,31 @@ void PrintArray(int array[], int n)
         cout<<array[i]<<" ";
     }
     cout<<endl;
+}
+
+// Function to perform Selection sort on the inputted array
+void SelectionSort(int array[], int n)
+{
+    int min_index;
+    for(int i = 0; i < n-1; i++)
+    {
+        min_index = i;
+        for(int j=i+1; j<n; j++)
+        if (array[j] < array[min_index])
+        {
+            min_index=j;
+        }
+        if(min_index != i)
+        {
+            swap(&array[min_index], &array[i]);
+        }
+    }
+}
+
+// Function for swapping two elements
+void swap(int *x, int *y)
+{
+    int temp = *x;
+    *x = *y;
+    *y = temp;
 }
