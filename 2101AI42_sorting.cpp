@@ -5,8 +5,10 @@ using namespace std;
 void InsertionSort(int array[], int n);
 void SelectionSort(int array[], int n);
 void BubbleSort(int array[], int n);
+void MergeSort(int array[], int const begin, int const end);
 void PrintArray(int array[], int n);
 void swap(int *x, int *y);
+void Merge(int array[], int const left, int const mid, int const right);
 
 int main(){
     int n;
@@ -22,6 +24,7 @@ int main(){
     cout<<"1. Insertion Sort\n";
     cout<<"2. Selection Sort\n";
     cout<<"3. Bubble Sort\n";
+    cout<<"4. Merge Sort\n";
     int choice;
     cout<<"Your choice of sort : ";
     cin>>choice;
@@ -37,6 +40,10 @@ int main(){
         break;
     case 3:
         BubbleSort(array, n);
+        PrintArray(array, n);
+        break;
+    case 4:
+        MergeSort(array, 0, n-1);
         PrintArray(array, n);
         break;
     default:
@@ -116,4 +123,70 @@ void BubbleSort(int array[], int n)
             }
         }
     }
+}
+
+// Function that helps in the execution of the MergeSort function
+void Merge(int array[], int const left, int const mid, int const right)
+{
+    auto const subArrayOne=mid-left+1;
+    auto const subArrayTwo=right-mid;
+  
+
+    auto *leftArray = new int[subArrayOne],
+         *rightArray = new int[subArrayTwo];
+
+    for(auto i=0; i<subArrayOne; i++)
+    {
+        leftArray[i] = array[left+i];
+    }
+    for(auto j=0; j<subArrayTwo; j++)
+    {
+        rightArray[j] = array[mid + 1 + j];
+    }
+  
+    auto indexOfSubArrayOne = 0,
+        indexOfSubArrayTwo = 0;
+    int indexOfMergedArray = left;
+
+    while(indexOfSubArrayOne < subArrayOne && indexOfSubArrayTwo < subArrayTwo)
+    {
+        if(leftArray[indexOfSubArrayOne] <= rightArray[indexOfSubArrayTwo])
+        {
+            array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
+            indexOfSubArrayOne++;
+        }
+        else
+        {
+            array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
+            indexOfSubArrayTwo++;
+        }
+        indexOfMergedArray++;
+    }
+    while(indexOfSubArrayOne < subArrayOne)
+    {
+        array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
+        indexOfSubArrayOne++;
+        indexOfMergedArray++;
+    }
+    while(indexOfSubArrayTwo < subArrayTwo)
+    {
+        array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
+        indexOfSubArrayTwo++;
+        indexOfMergedArray++;
+    }
+    delete[] leftArray;
+    delete[] rightArray;
+}
+  
+// Function to perform Bubble sort on the inputted array
+void MergeSort(int array[], int const begin, int const end)
+{
+    if(begin >= end)
+    {
+        return;
+    }
+    auto mid=begin+(end - begin)/2;
+    MergeSort(array, begin, mid);
+    MergeSort(array, mid + 1, end);
+    Merge(array, begin, mid, end);
 }
