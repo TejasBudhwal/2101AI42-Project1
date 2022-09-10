@@ -3,6 +3,7 @@ using namespace std;
 
 float add(float a, float b);
 float sub(float a, float b);
+float multi(float a, float b);
 
 int main(){
     int choice;
@@ -21,6 +22,9 @@ int main(){
         case 2 :
             sub(x, y);
             break;
+        case 3 :
+            multi(x, y);
+            break;
         default :
             cout<<"The number you entered for choosing the operation is not a valid input.\n";
             break;
@@ -38,4 +42,10 @@ float sub(float a, float b)
 {
     float output=a-b;
     cout<<"The difference of the two numbers you entered is : "<<output;
+}
+
+float multi(float a, float b)
+{
+    float output=a*b;
+    cout<<"Multiplication of the two numbers you entered gives : "<<output;
 }
